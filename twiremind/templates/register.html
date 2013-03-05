@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Register/Reset PIN{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="span6">
+                <h2>STEP: 1</h2>
+                TwiRemindMe can't send you a direct message if you are not following our twitter account. <br/><br/>
+
+                <a href="https://twitter.com/TwiRemindMe" class="twitter-follow-button" data-show-count="false"
+                   data-size="large">Follow @TwiRemindMe</a>
+                <script>!function (d, s, id) {
+                    var js, fjs = d.getElementsByTagName(s)[0];
+                    if (!d.getElementById(id)) {
+                        js = d.createElement(s);
+                        js.id = id;
+                        js.src = "//platform.twitter.com/widgets.js";
+                        fjs.parentNode.insertBefore(js, fjs);
+                    }
+                }(document, "script", "twitter-wjs");</script>
+
+                <br/><br/><br/>
+
+                <h2>STEP: 2</h2>
+                Enter your Twitter Username, we shall send your 4 digits pin as direct message. Please use this pin to
+                login to our system. <br/><br/>
+
+                <form method="POST">
+                    {% csrf_token %}
+                    <input type="text" placeholder="twitter username" name="screen_name"/><br/>
+                    <input class="btn" type="submit" value="Send PIN">
+                </form>
+            </div>
+
+            <div class="offset1 span4 well">
+                <h2>Lost PIN?</h2>
+                Just enter your twitter username and register again, we shall send you an updated PIN.
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}TwiRemind.Me - Home{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="span11">
+                <div class="hero-unit">
+                    <h2>TwiRemind.Me</h2>
+
+                    <p>Reminders delivered to your Twitter Inbox!</p><br/>
+
+                    <p>
+                        <strong>What is it?</strong><br/>
+                        TwiRemind.Me is a simple service that allows you to schedule reminders in the future. These
+                        reminders are then delivered directly to your twitter inbox when the time comes.
+                        <br/>
+
+                        <strong>Why Twitter Direct Message?</strong><br/>
+                        Because Twitter delivers the message through a number of media - including email, web, different
+                        desktop/mobile clients and most importantly through SMS. You can totally control how you want to
+                        get the reminder. <br/>
+
+                        <strong>Why not just use a Calendar Service?</strong><br/>
+                        Calendar services are very often better suited. However, with Twitter DM, you can attach a
+                        custom 140 chars message. You are in the control of what is sent in the message.
+
+                    </p>
+
+                    <br/>
+
+                    <p>
+                        <a href="/register" class="btn btn-primary">
+                            Get Started
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

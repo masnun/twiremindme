@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% block title %} Reminder List {% endblock %}
+
+
+{% block content %}
+    <div class="container">
+        {% if status == "ok" %}
+            <div class="row">
+                <div class="alert alert-success">The requested action was complete!</div>
+            </div>
+        {% endif %}
+
+        <div class="row">
+
+            <div class="span4">
+                <div class="form">
+                    <h2>Add Reminder</h2>
+
+                    <form method="POST" action="/home">
+                        {% csrf_token %}
+                        <strong>Remind me in: </strong><br/>
+                        <input type="text" placeholder="days" style="width: 40px;" maxlength="4" name="days"/> -
+                        <input placeholder="hours" style="width: 40px;" type="text" maxlength="2" name="hours"/> -
+                        <input placeholder="mins" style="width: 40px;" type="text" maxlength="4" name="mins"/> <br/>
+
+                        <strong>Message:</strong><br/>
+                        <textarea name="message" maxlength="140"></textarea><br/>
+
+                        <input class="btn btn-success" type="submit" value="Add">
+
+                    </form>
+
+                    <br/><br/>
+
+                    <h2>Update PIN</h2>
+
+                    <form method="POST" action="/home">
+                        {% csrf_token %}
+
+                        <strong>New PIN:</strong><br/>
+                        <input type="text" placeholder="XXXX" maxlength="4" name="pin"/><br/>
+
+                        <input class="btn btn-info" type="submit" value="Update">
+
+                    </form>
+
+
+                </div>
+            </div>
+
+            <div class="span6">
+                <h2>Your Reminders</h2>
+
+                <div class="reminders">
+                    {% for reminder in reminders %}
+
+                        <div class="">
+                            <span class="icon-time">&nbsp;</span>
+                            {% if reminder.is_past_due %}
+                                {{ reminder.scheduled_time|timesince }} ago
+                            {% else %}
+                                {{ reminder.scheduled_time|timeuntil }} to go
+                            {% endif %}
+
+                            {% if reminder.processed %}
+                                <span class="label label-success">Processed</span>
+                            {% endif %}
+
+                            - <a href="/delete?id={{ reminder.id }}"
+                                 onclick="return confirm('Are you sure you want to delete it?')"><span
+                                class="icon-trash"></span></a>
+                        </div>
+
+                        <div class="well">
+                            {{ reminder.message }}
+                        </div>
+
+                        <br/>
+
+                    {% endfor %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
